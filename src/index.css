@@ -1,0 +1,29 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#quote-box {
+  max-width: 400px;
+  background-color: antiquewhite;
+  padding: 2em;
+}
+#author {
+  text-align: right;
+  width: inherit;
+
+  float: right;
+  padding: 1em 0em;
+}
+#quote-change {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4em;
+}
+#quote-post {
+  display: flex;
+  justify-content: space-around;
+  min-width: 50%;
+}
