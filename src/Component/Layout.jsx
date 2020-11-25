@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-function Layout() {
+import { Fetch_Data } from "./Action";
+function Layout({ Fetch_Data, quotes_Api }) {
+  useEffect(() => {
+    Fetch_Data();
+  }, []);
+  const { quotes } = !quotes_Api ? "HELLO" : quotes_Api;
+  console.log(quotes);
+
   return (
     <div className="container">
       <div id="quote-box">
@@ -24,10 +31,9 @@ function Layout() {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    quote: state,
+    quotes_Api: state.quotes,
   };
 };
 
-export default connect(mapStateToProps)(Layout);
+export default connect(mapStateToProps, { Fetch_Data })(Layout);
