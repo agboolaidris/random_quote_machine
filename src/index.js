@@ -9,7 +9,7 @@ import reducer from './Component/Quote_reducer'
 import thunk from 'redux-thunk';
 const initialState={}
 const composeEnhancer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ ||compose
-const store = createStore(reducer,initialState,composeEnhancer( applyMiddleware(thunk)))
+const store = createStore(reducer,applyMiddleware(thunk))
 
 ReactDOM.render(
   <React.StrictMode>
