@@ -7,8 +7,6 @@ import {createStore, applyMiddleware,compose} from 'redux'
 import {Provider} from 'react-redux'
 import reducer from './Component/Quote_reducer'
 import thunk from 'redux-thunk';
-const initialState={}
-const composeEnhancer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ ||compose
 const store = createStore(reducer,applyMiddleware(thunk))
 
 ReactDOM.render(

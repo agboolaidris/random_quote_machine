@@ -1,9 +1,15 @@
-const reducer = (state = {}, action) => {
+const initial = {
+  Data: [{ quote: "i love africe", author: "iggg " }],
+  isLoading: true,
+};
+const reducer = (state = initial, action) => {
   switch (action.type) {
     case "FETCH_DATA":
-      console.log(action.payload);
+      const result = action.payload.quotes;
+      console.log(result);
       return {
-        quotes: action.payload,
+        Data: result,
+        isLoading: false,
       };
     default:
       return state;

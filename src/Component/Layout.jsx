@@ -1,45 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Fetch_Data } from "./Action";
-function Layout({ Fetch_Data, quotes_Api }) {
+function Layout({ Fetch_Data, quotes_Api, isLoad }) {
   const [state, setstate] = useState({
-    quote: "",
-    author: "",
+    random_num: Math.floor(Math.random() * 30),
+    color: ["red", "yellow", "green", "blue"],
   });
-
-  const { quotes } = quotes_Api !== undefined && quotes_Api;
-  console.log(quotes);
-  useEffect(() => {
-    console.log(quotes);
-  }, [quotes]);
 
   useEffect(() => {
     Fetch_Data();
   }, []);
 
   const handleClick = () => {
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    console.log(quote);
+    setstate({
+      random_num: Math.floor(Math.random() * quotes_Api.length),
+    });
   };
-
   return (
-    <div className="container">
-      {!quotes ? (
+    <div className="container" sty>
+      {isLoad ? (
         <h2>Loading</h2>
       ) : (
         <div id="quote-box">
-          <div id="text">{state.quote}</div>
-          <span id="author">Agboola</span>
-          <div id="quote-change">
-            <div id="quote-post">
-              <a id="tweet-quote">twitter</a>
-              <a id="tmblr-quote">T-mbir</a>
-            </div>
+          {
+            <>
+              <div id="text">{quotes_Api[state.random_num].quote}</div>
+              <span id="author">{quotes_Api[state.random_num].author}</span>
+              <div id="quote-change">
+                <div id="quote-post">
+                  <a id="tweet-quote">twitter</a>
+                  <a id="tmblr-quote">T-mbir</a>
+                </div>
 
-            <button id="new-quote" onClick={handleClick}>
-              New Quote
-            </button>
-          </div>
+                <button id="new-quote" onClick={handleClick}>
+                  New Quote
+                </button>
+              </div>
+            </>
+          }
         </div>
       )}
     </div>
@@ -49,7 +47,8 @@ function Layout({ Fetch_Data, quotes_Api }) {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    quotes_Api: state.quotes,
+    quotes_Api: state.Data,
+    isLoad: state.isLoading,
   };
 };
 
